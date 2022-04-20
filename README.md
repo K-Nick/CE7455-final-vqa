@@ -14,7 +14,7 @@ Our project is implemented using pytorch lightning and hydra
 * util: common block for file IO and network operation
 * model/
   * peterson_base.py // Peterson et al. (simplified)
-  * qvcomp // Hadamard Replacement
+  * qvhadm // Hadamard Replacement
   * qvguide // Word Level Transformer
   * qvcross // deprecated
   * qvjoint // deprecated, not reported in the final result

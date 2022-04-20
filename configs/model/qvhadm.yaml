@@ -1,4 +1,4 @@
-arch: qvcomp
+arch: qvhadm
 
 num_hid: 1024
 dropout: 0.5

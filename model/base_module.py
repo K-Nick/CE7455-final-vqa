@@ -15,7 +15,7 @@ from util.log_utils import get_logger
 from omegaconf import DictConfig
 from baseline.base_model import build_baseline0_newatt_interface
 from .peterson_base import PetersonBaseline
-from .peterson_base_2017 import PetersonBase2017
+from .qvhadm import QVHadamard
 from .qvjoint import QVJointBaseModel
 from .qvguide import QVGuideModel
 from .qvcross import QVCrossModel
@@ -30,13 +30,8 @@ def build_model(conf, pre_emb):
     elif conf.model.arch == "peterson_base":
         return PetersonBaseline(conf, pre_emb)
 
-    elif conf.model.arch == "peterson_base_2017":
-        return PetersonBase2017(conf, pre_emb)
-
-    elif conf.model.arch == "heng":
-        model = build_baseline0_newatt_interface(19901, 2048, 3129, 1024)
-        model.w_emb = nn.Embedding.from_pretrained(pre_emb, padding_idx=0)
-        return model
+    elif conf.model.arch == "qvhadm":
+        return QVHadamard(conf, pre_emb)
 
     elif conf.model.arch == "qvguide":
         return QVGuideModel(conf, pre_emb)
