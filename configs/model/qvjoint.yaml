@@ -1,0 +1,27 @@
+arch: qvjoint
+
+num_hid: 2048
+dropout: 0.3
+
+q_enc:
+  arch: transformer
+  d_model: 512
+  nhead: 8
+  nlayer: 1
+  ff_dim: 2048
+
+# q_enc:
+#   arch: GRU
+#   bidirect: true
+#   nlayer: 2
+
+qv_attn:
+  d_model: 512
+  nlayer: 3
+  nhead: 8
+  ff_dim: 2048
+
+qv_fuser:
+  target: "attn_fuse"
+  attn_fuse:
+    num_hid: 1024

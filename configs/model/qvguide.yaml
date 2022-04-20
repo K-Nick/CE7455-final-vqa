@@ -1,0 +1,9 @@
+arch: qvguide
+
+num_hid: 1024
+clf_ff_dim: 2048
+qv_cross:
+  d_model: 1024
+  nhead: 8
+  ff_dim: 2048
+  nlayer: 3

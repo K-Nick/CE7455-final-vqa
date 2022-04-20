@@ -1,0 +1,85 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - model: qvjoint
+  - logdir: default
+  - override hydra/hydra_logging: colorlog
+  - override hydra/job_logging: colorlog
+  - override hydra/sweeper: optuna
+
+name: default
+
+# all config before dataloader
+data:
+  root_dir: ${hydra:runtime.cwd}
+  data_dir: ${data.root_dir}/data_bin
+  cache_dir: ${data.root_dir}/cache_bin
+  dataset_name: VQA-v2
+  output_dir: null
+  use_cache: true
+  num_ans: null
+  min_ans_freq: 9
+  max_ans_tokens: null
+  word_dim: 300
+  img_dim: 2048
+  pre_pad: False
+
+
+callbacks:
+  early_stop:
+    _target_: pytorch_lightning.callbacks.EarlyStopping
+    monitor: val/acc
+    mode: max
+    patience: 20
+  
+  checkpoint:
+    _target_: pytorch_lightning.callbacks.ModelCheckpoint
+    monitor: val/acc
+    mode: max
+    save_weights_only: True
+    save_top_k: 1
+
+train:
+  batch_size: 1024
+  
+  #* specific for dataloader
+  prefetch_factor: 5
+  num_workers: 3
+
+  num_epoch: 200
+  grad_clip: 0.25
+  val_interval: 3
+
+  strategy: null
+  fast_dev_run: False
+  watch_model: True
+  accum_batch: null
+  precision: 32
+
+optim:
+  optimizer:
+    target: adamw
+    lr: 3.e-4
+
+  scheduler:
+    target: warmup_cosine
+    exp:
+      gamma: 0.99
+    warmup_cosine:
+      T_max: 60
+      warmup_epochs: 2
+    cosine:
+      T_max: 60
+
+logger:
+  project: ce7455-vqa-final-pl
+  mode: online
+  tags: null
+  notes: null
+
+debug: False
+gpus: 1
+device: null
+seed: 42
+ignore_warning: True

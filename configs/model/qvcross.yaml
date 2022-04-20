@@ -1,0 +1,9 @@
+arch: qvcross
+
+num_hid: 512
+clf_ff_dim: 2048
+qv_cross:
+  d_model: 512
+  nhead: 8
+  ff_dim: 2048
+  nlayer: 3
