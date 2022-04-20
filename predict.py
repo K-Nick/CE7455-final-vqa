@@ -1,6 +1,3 @@
-import sys
-
-sys.path.insert(0, "..")
 import torch
 import pytorch_lightning as pl
 from model.base_module import VQABaseModule
