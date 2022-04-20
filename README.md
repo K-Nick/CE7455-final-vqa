@@ -18,8 +18,8 @@ Our project is implemented using pytorch lightning and hydra
   * qvguide // Word Level Transformer
   * qvcross // deprecated
   * qvjoint // deprecated, not reported in the final result
-* main: the main entry of training
-* predict: load checkpoint and collect results from multiple runs
+* `main.py`: the main entry of training
+* `predict.py`: load checkpoint and collect results from multiple runs
 
 ## Usage Instruction
 
