@@ -13,7 +13,6 @@ from torch.optim.lr_scheduler import CosineAnnealingLR, ChainedScheduler, Expone
 from pl_bolts.optimizers.lr_scheduler import LinearWarmupCosineAnnealingLR
 from util.log_utils import get_logger
 from omegaconf import DictConfig
-from baseline.base_model import build_baseline0_newatt_interface
 from .peterson_base import PetersonBaseline
 from .qvhadm import QVHadamard
 from .qvjoint import QVJointBaseModel
